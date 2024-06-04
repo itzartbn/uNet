@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:background="@color/black">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/login_background">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lecsignuptitle"
+            android:text="Sign up"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_margin="25dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lec"
+            android:text="(Teacher)"
+            android:layout_below="@+id/lecsignuptitle"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_margin="2dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lecname"
+            android:layout_below="@+id/lec"
+            android:background="#30ffffff"
+            android:hint="Full Name"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:padding="20dp"
+            android:drawableLeft="@drawable/baseline_drive_file_rename_outline_24"
+            android:drawablePadding="20dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lecemail"
+            android:layout_below="@+id/lecname"
+            android:background="#30ffffff"
+            android:hint="E-mail"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:padding="20dp"
+            android:drawableLeft="@drawable/baseline_email_24"
+            android:drawablePadding="20dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lecprogram"
+            android:layout_below="@+id/lecemail"
+            android:background="#30ffffff"
+            android:hint="Program"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:padding="20dp"
+            android:drawableLeft="@drawable/baseline_menu_book_24"
+            android:drawablePadding="20dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/leclocation"
+            android:layout_below="@+id/lecprogram"
+            android:background="#30ffffff"
+            android:hint="Location"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:padding="20dp"
+            android:drawableLeft="@drawable/baseline_location_on_24"
+            android:drawablePadding="20dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/leclocationbtn"
+            android:text="Track Location"
+            android:textColor="@color/black"
+            android:layout_below="@+id/leclocation"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/white"
+            android:textSize="15dp"
+            android:paddingHorizontal="100dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lecid"
+            android:layout_below="@+id/leclocationbtn"
+            android:background="#30ffffff"
+            android:hint="Teacher ID"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="40dp"
+            android:padding="20dp"
+            android:drawableLeft="@drawable/baseline_person_outline_24"
+            android:drawablePadding="20dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lecpassword"
+            android:layout_below="@+id/lecid"
+            android:background="#30ffffff"
+            android:hint="Password"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:padding="20dp"
+            android:drawableLeft="@drawable/baseline_key_24"
+            android:drawablePadding="20dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lecrepassword"
+            android:layout_below="@+id/lecpassword"
+            android:background="#30ffffff"
+            android:hint="Confirm Password"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:padding="20dp"
+            android:drawableLeft="@drawable/baseline_key_24"
+            android:drawablePadding="20dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lecsignupbtn"
+            android:text="Sign up"
+            android:textColor="@color/black"
+            android:layout_below="@+id/lecrepassword"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/white"
+            android:textSize="20dp"
+            android:paddingHorizontal="120dp"/>
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+</ScrollView>
