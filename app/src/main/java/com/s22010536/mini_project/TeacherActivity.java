@@ -16,6 +16,9 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -66,22 +69,12 @@ public class TeacherActivity extends AppCompatActivity {
         btnreg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentReg = new Intent(TeacherAtivity.this, RegisterActivity.class);
+                Intent intentReg = new Intent(TeacherActivity.this, RegisterActivity.class);
                 startActivity(intentReg);
             }
         });
         //avoid logged user login again
         authProfile = FirebaseAuth.getInstance();
-
-        //forgot password button
-        Button buttonForgotPassword = findViewById(R.id.login_forgotPassword);
-        buttonForgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(TeacherAtivity.this, "you can reset your password now!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(TeacherAtivity.this, ForgotPasswordActivity.class));
-            }
-        });
 
         //login
         Button btnLogin = findViewById(R.id.login_btn);
@@ -92,11 +85,11 @@ public class TeacherActivity extends AppCompatActivity {
                 String textPwd = editTextLoginPwd.getText().toString();
 
                 if(TextUtils.isEmpty(textMail)){
-                    Toast.makeText(TeacherAtivity.this,"Please enter your Email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TeacherActivity.this,"Please enter your Email", Toast.LENGTH_SHORT).show();
                     editTextLoginMail.setError("Email Required");
                     editTextLoginMail.requestFocus();
                 } else if (TextUtils.isEmpty(textPwd)) {
-                    Toast.makeText(TeacherAtivity.this,"Please enter the password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TeacherActivity.this,"Please enter the password", Toast.LENGTH_SHORT).show();
                     editTextLoginPwd.setError("Password Required");
                     editTextLoginPwd.requestFocus();
 
@@ -118,9 +111,9 @@ public class TeacherActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Intent loginToHome = new Intent(TeacherAtivity.this, UserProfileActivity.class);
+                    Intent loginToHome = new Intent(TeacherActivity.this, UserProfileActivity.class);
                     startActivity(loginToHome);
-                    Toast.makeText(TeacherAtivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TeacherActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
 
 
                 }else {
@@ -135,7 +128,7 @@ public class TeacherActivity extends AppCompatActivity {
                         editTextLoginMail.requestFocus();
                     }catch (Exception e){
                         Log.e(TAG, e.getMessage());
-                        Toast.makeText(TeacherAtivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TeacherActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -152,11 +145,11 @@ public class TeacherActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (authProfile.getCurrentUser() != null) {
-            Toast.makeText(StudentAtivity.this, "You are already logged in", Toast.LENGTH_SHORT).show();
-            Intent loginToHome = new Intent(StudentAtivity.this, HomeActivity.class);
+            Toast.makeText(TeacherActivity.this, "You are already logged in", Toast.LENGTH_SHORT).show();
+            Intent loginToHome = new Intent(TeacherActivity.this, HomeActivity.class);
             startActivity(loginToHome);
         }else{
-            Toast.makeText(StudentAtivity.this, "You can log in now", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TeacherActivity.this, "You can log in now", Toast.LENGTH_SHORT).show();
 
         }
     }*/

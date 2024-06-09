@@ -34,6 +34,8 @@ public class StudentAtivity extends AppCompatActivity {
     private FirebaseAuth authProfile;
     private static final String TAG = "StudentActivity";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,7 @@ public class StudentAtivity extends AppCompatActivity {
         editTextLoginMail = findViewById(R.id.login_mail);
         editTextLoginPwd = findViewById(R.id.login_password);
         progressBar = findViewById(R.id.loginProgress);
+
 
         //password hiding eye
         ImageView imageViewShowHidePwd = findViewById(R.id.imageView_show_hide_pwd);
