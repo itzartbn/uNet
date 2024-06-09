@@ -1,0 +1,4 @@
+Background - DEFCF9
+text - CCA8E9
+borders - C3BEF0
+buttons - CADEFC
