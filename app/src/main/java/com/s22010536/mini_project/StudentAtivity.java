@@ -16,9 +16,6 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -75,6 +72,16 @@ public class StudentAtivity extends AppCompatActivity {
         });
         //avoid logged user login again
         authProfile = FirebaseAuth.getInstance();
+
+        //forgot password button
+        Button buttonForgotPassword = findViewById(R.id.login_forgotPassword);
+        buttonForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(StudentAtivity.this, "you can reset your password now!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(StudentAtivity.this, ForgotPasswordActivity.class));
+            }
+        });
 
         //login
         Button btnLogin = findViewById(R.id.login_btn);
