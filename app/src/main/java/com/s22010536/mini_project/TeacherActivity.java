@@ -107,7 +107,13 @@ public class TeacherActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    checkUserRole(authProfile.getCurrentUser().getUid());
+                    checkUserRole(authProfile.getCurrentUser().getUid())
+
+
+
+
+
+                    ;
                 } else {
                     try {
                         throw task.getException();
@@ -134,7 +140,7 @@ public class TeacherActivity extends AppCompatActivity {
                 if (snapshot.exists()) {
                     String role = snapshot.child("role").getValue(String.class);
                     if ("teacher".equals(role)) {
-                        Intent loginToHome = new Intent(TeacherActivity.this, UserProfileActivity.class);
+                        Intent loginToHome = new Intent(TeacherActivity.this, NotificationActivity.class);
                         startActivity(loginToHome);
                         Toast.makeText(TeacherActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     } else {
