@@ -48,7 +48,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".StudentAtivity"
+            android:name=".StudentActivity"
             android:exported="false" />
         <activity
             android:name=".NotificationActivity"
