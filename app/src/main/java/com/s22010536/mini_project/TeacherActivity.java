@@ -44,19 +44,23 @@ public class TeacherActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.loginProgress);
 
         ImageView imageViewShowHidePwd = findViewById(R.id.imageView_show_hide_pwd);
-        imageViewShowHidePwd.setImageResource(R.drawable.ic_hide_pwdw);
+        imageViewShowHidePwd.setImageResource(R.drawable.closedeye);
         imageViewShowHidePwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(editTextLoginPwd.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())){
+                    //if visible then hide it
                     editTextLoginPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    imageViewShowHidePwd.setImageResource(R.drawable.ic_hide_pwdw);
+                    //change icon
+                    imageViewShowHidePwd.setImageResource(R.drawable.closedeye);
+
                 } else {
                     editTextLoginPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    imageViewShowHidePwd.setImageResource(R.drawable.ic_show_pwdw);
+                    imageViewShowHidePwd.setImageResource(R.drawable.openedeye);
                 }
             }
         });
+
 
         Button btnreg = findViewById(R.id.newSignup);
         btnreg.setOnClickListener(new View.OnClickListener() {

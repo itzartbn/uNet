@@ -44,7 +44,7 @@ public class StudentActivity extends AppCompatActivity {
 
         //password hiding eye
         ImageView imageViewShowHidePwd = findViewById(R.id.imageView_show_hide_pwd);
-        imageViewShowHidePwd.setImageResource(R.drawable.ic_hide_pwdw);
+        imageViewShowHidePwd.setImageResource(R.drawable.closedeye);
         imageViewShowHidePwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
