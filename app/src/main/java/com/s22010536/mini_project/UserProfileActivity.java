@@ -39,7 +39,7 @@ public class UserProfileActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_user_profile);
 
-        textViewWelcome = findViewById(R.id.showWelcome);
+        //textViewWelcome = findViewById(R.id.showWelcome);
         textViewFullname = findViewById(R.id.profile_fullName);
         textViewEmail = findViewById(R.id.profile_email);
         textViewSid = findViewById(R.id.profile_sid);
@@ -47,11 +47,11 @@ public class UserProfileActivity extends AppCompatActivity {
         textViewLocation = findViewById(R.id.profile_location);
         progressBar = findViewById(R.id.progressBar_profile);
         imageView = findViewById(R.id.profileDp);
-        Toolbar toolBar = findViewById(R.id.toolbar);
+        //Toolbar toolBar = findViewById(R.id.toolbar);
 
 
-        setSupportActionBar(toolBar);
-        getSupportActionBar().setTitle("Profile");
+        //setSupportActionBar(toolBar);
+        //getSupportActionBar().setTitle("Profile");
 
 
 
@@ -86,7 +86,7 @@ public class UserProfileActivity extends AppCompatActivity {
                     program = readUserDetails.program;
                     location = readUserDetails.location;
 
-                    textViewWelcome.setText("Welcome " + fullName + "!");
+                    //textViewWelcome.setText("Welcome " + fullName + "!");
                     textViewFullname.setText(fullName);
                     textViewEmail.setText(email);
                     textViewSid.setText(sid);
@@ -108,7 +108,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 
-    //create actionbar menu
+    /*//create actionbar menu
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -130,5 +130,5 @@ public class UserProfileActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
 
-    }
+    }*/
 }
