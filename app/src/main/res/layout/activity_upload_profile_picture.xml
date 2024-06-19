@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UploadProfilePictureActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_margin="15dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_upload_head"
+            android:text="Upload your profile pic here"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pic_choose_btn"
+            android:layout_below="@id/textview_upload_head"
+            android:layout_marginTop="20dp"
+            android:text="Choose Picture"
+            android:layout_marginRight="70dp"
+            android:layout_marginLeft="70dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:id="@+id/imageview_profile_dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_baclground"
+            android:layout_below="@id/pic_choose_btn"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/upload_picture_btn"
+            android:layout_below="@id/imageview_profile_dp"
+            android:layout_marginTop="20dp"
+            android:text="Upload Picture"
+            android:layout_marginRight="70dp"
+            android:layout_marginLeft="70dp"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar_profile"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/indeterminate_circular_progress"
+            android:elevation="10dp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</ScrollView>

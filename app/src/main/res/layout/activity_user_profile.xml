@@ -43,14 +43,19 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/profileDp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_marginBottom="16dp"
+                    android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:shapeAppearanceOverlay="@style/roundedImageRounded"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:srcCompat="@drawable/user_icon"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="2dp" />
+
 
                 <TextView
                     android:id="@+id/profile_fullName"
@@ -82,7 +87,7 @@
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_margin="16dp"
-                    android:drawableStart="@drawable/ic_email"
+                    android:drawableStart="@drawable/icon_mail"
                     android:drawablePadding="10dp"
                     android:drawableTint="@color/white"
                     android:gravity="center_vertical"
@@ -108,7 +113,7 @@
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_margin="16dp"
-                    android:drawableStart="@drawable/id_icon"
+                    android:drawableStart="@drawable/icon_id"
                     android:drawablePadding="10dp"
                     android:drawableTint="@color/white"
                     android:gravity="center_vertical"
@@ -135,7 +140,7 @@
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_margin="16dp"
-                    android:drawableStart="@drawable/id_icon"
+                    android:drawableStart="@drawable/icon_program"
                     android:drawablePadding="10dp"
                     android:drawableTint="@color/white"
                     android:gravity="center_vertical"
@@ -162,7 +167,7 @@
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_margin="16dp"
-                    android:drawableStart="@drawable/id_icon"
+                    android:drawableStart="@drawable/icon_location"
                     android:drawablePadding="10dp"
                     android:drawableTint="@color/white"
                     android:gravity="center_vertical"
@@ -183,6 +188,33 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/profile_location" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/background_gradient_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraintLayout3">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/profile_logout_btn"
+                    style="@android:style/Widget.Button"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="32dp"
+                    android:background="@drawable/btn_baclground"
+                    android:gravity="center"
+                    android:text="log out"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -211,7 +243,7 @@
                     android:layout_height="35dp"
                     android:background="@drawable/bg_circle_dark"
                     android:padding="8dp"
-                    android:src="@drawable/fav_icon"
+                    android:src="@drawable/icon_edit"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/white" />

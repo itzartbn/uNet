@@ -47,7 +47,7 @@
                     android:layout_width="360dp"
                     android:layout_height="360dp"
                     app:strokeWidth="0dp"
-                    tools:srcCompat="@drawable/woman2"
+                    app:srcCompat="@drawable/woman2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
