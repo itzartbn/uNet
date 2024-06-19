@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Mini_project"
         tools:targetApi="31">
         <activity
+            android:name=".UpdateProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".UploadProfilePictureActivity"
             android:exported="false" />
         <activity

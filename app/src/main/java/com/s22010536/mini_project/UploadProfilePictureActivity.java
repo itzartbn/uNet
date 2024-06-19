@@ -24,14 +24,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-import android.widget.ImageView;
 import android.widget.Toast;
-
 
 public class UploadProfilePictureActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
-    private ImageView  imageViewUploadPic;
+    private ImageView imageViewUploadPic;
     private FirebaseAuth authProfile;
     private StorageReference storageReference;
     private FirebaseUser firebaseUser;
@@ -43,8 +41,6 @@ public class UploadProfilePictureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_upload_profile_picture);
-
-
 
         Button picChooseBtn = findViewById(R.id.pic_choose_btn);
         Button uploadPicBtn = findViewById(R.id.upload_picture_btn);
@@ -58,10 +54,10 @@ public class UploadProfilePictureActivity extends AppCompatActivity {
 
         Uri uri = firebaseUser.getPhotoUrl();
 
-        //set users current dp if already uploaded
+        // Set user's current profile picture if already uploaded
         Picasso.get().load(uri).into(imageViewUploadPic);
 
-//choosing the image button
+        // Choosing the image button
         picChooseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,31 +65,29 @@ public class UploadProfilePictureActivity extends AppCompatActivity {
             }
         });
 
-        //upload image to firebase
+        // Upload image to Firebase
         uploadPicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
-                UploadPic();
-
+                uploadPic();
             }
         });
-
     }
 
-    private void openFileChooser(){
+    private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
-    private void UploadPic() {
+    private void uploadPic() {
         if (uriImage != null) {
-            //save the image with the uid of currently logged user
+            // Save the image with the uid of currently logged user
             StorageReference fileReference = storageReference.child(authProfile.getCurrentUser().getUid() + "." + getFileExtension(uriImage));
 
-            //upload image to storage
+            // Upload image to storage
             fileReference.putFile(uriImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -103,15 +97,14 @@ public class UploadProfilePictureActivity extends AppCompatActivity {
                             Uri downloadUri = uri;
                             firebaseUser = authProfile.getCurrentUser();
 
-
-                            //setting pp after user upload a one
+                            // Setting profile picture after user uploads one
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                     .setPhotoUri(downloadUri).build();
                             firebaseUser.updateProfile(profileUpdates);
                         }
                     });
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(UploadProfilePictureActivity.this, "Profile Picture Set Successfuly", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UploadProfilePictureActivity.this, "Profile Picture Set Successfully", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(UploadProfilePictureActivity.this, UserProfileActivity.class);
                     startActivity(intent);
@@ -121,14 +114,13 @@ public class UploadProfilePictureActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(UploadProfilePictureActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
                 }
             });
         }
     }
 
-    //obtaiing the file extention of the image
-    private String getFileExtension(Uri uri){
+    // Obtaining the file extension of the image
+    private String getFileExtension(Uri uri) {
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
@@ -143,6 +135,4 @@ public class UploadProfilePictureActivity extends AppCompatActivity {
             imageViewUploadPic.setImageURI(uriImage);
         }
     }
-
-
 }

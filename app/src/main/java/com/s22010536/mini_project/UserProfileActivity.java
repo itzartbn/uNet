@@ -30,6 +30,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private String fullName, email, sid, program, location;
     private ShapeableImageView profileDp;
     private FirebaseAuth authProfile;
+    private ImageView updateProfileBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +45,23 @@ public class UserProfileActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar_profile);
         profileDp = findViewById(R.id.profileDp);
         Button profileLogoutbtn = findViewById(R.id.profile_logout_btn);
+        updateProfileBtn = findViewById(R.id.edit_button);
 
         authProfile = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
 
+
+        //edit profile button
+        updateProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfileActivity.this, UpdateProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+//logout button
         profileLogoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +88,10 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
 
     private void showUserProfile(FirebaseUser firebaseUser) {
         String userId = firebaseUser.getUid();

@@ -56,4 +56,7 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("com.google.firebase:firebase-storage:21.0.0")
     implementation ("com.squareup.picasso:picasso:2.8")
+    implementation("com.google.firebase:firebase-appcheck:18.0.0")
+    implementation("com.google.firebase:firebase-appcheck-safetynet:16.1.2")
+
 }

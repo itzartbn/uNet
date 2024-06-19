@@ -19,11 +19,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.appcheck.FirebaseAppCheck;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-
+import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
 public class StudentActivity extends AppCompatActivity {
 
     private EditText editTextLoginMail, editTextLoginPwd;
@@ -41,6 +43,8 @@ public class StudentActivity extends AppCompatActivity {
         editTextLoginMail = findViewById(R.id.login_mail);
         editTextLoginPwd = findViewById(R.id.login_password);
         progressBar = findViewById(R.id.loginProgress);
+
+
 
         //password hiding eye
         ImageView imageViewShowHidePwd = findViewById(R.id.imageView_show_hide_pwd);
@@ -160,4 +164,17 @@ public class StudentActivity extends AppCompatActivity {
 
         }
     }*/
+//if user already logged in no login again needed
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (authProfile.getCurrentUser() != null) {
+            Toast.makeText(StudentActivity.this, "Already logged in", Toast.LENGTH_SHORT).show();
+
+            startActivity(new Intent(StudentActivity.this, UserProfileActivity.class));
+            finish();
+        }else {
+            Toast.makeText(StudentActivity.this, "You can log in!", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
