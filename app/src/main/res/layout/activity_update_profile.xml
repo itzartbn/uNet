@@ -1,10 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UpdateProfileActivity">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_margin="15dp"
+        android:background="@color/white">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:id="@+id/textView_updateProfile_head"
+            android:text="You can update profile here"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_profile_name"
+            android:layout_below="@id/textView_updateProfile_head"
+            android:text="Name"
+            android:layout_marginTop="30dp"
+            android:padding="6dp"
+            android:textSize="16sp"
+            android:textColor="#555555"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_update_name"
+            android:background="@drawable/pp_border"
+            android:layout_below="@id/update_profile_name"
+            android:inputType="textPersonName"
+            android:padding="6sp"
+            android:hint="Enter Full name"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_profile_program"
+            android:layout_below="@id/editText_update_name"
+            android:text="Degree Program"
+            android:layout_marginTop="30dp"
+            android:padding="6dp"
+            android:textSize="16sp"
+            android:textColor="#555555"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_update_program"
+            android:background="@drawable/pp_border"
+            android:layout_below="@id/update_profile_program"
+            android:inputType="textPersonName"
+            android:padding="6sp"
+            android:hint="Enter the Degree Program"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_profile_sid"
+            android:layout_below="@id/editText_update_program"
+            android:text="SID"
+            android:layout_marginTop="30dp"
+            android:padding="6dp"
+            android:textSize="16sp"
+            android:textColor="#555555"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_update_sid"
+            android:background="@drawable/pp_border"
+            android:layout_below="@id/update_profile_sid"
+            android:inputType="textPersonName"
+            android:padding="6sp"
+            android:hint="Enter your student ID"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_profile_location"
+            android:layout_below="@id/editText_update_sid"
+            android:text="Location"
+            android:layout_marginTop="30dp"
+            android:padding="6dp"
+            android:textSize="16sp"
+            android:textColor="#555555"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_update_location"
+            android:background="@drawable/pp_border"
+            android:layout_below="@id/update_profile_location"
+            android:inputType="textPersonName"
+            android:padding="6sp"
+            android:hint="Enter your Location"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/updateProfile_map_button"
+            style="@android:style/Widget.Button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_baclground"
+            android:gravity="center"
+            android:text="Track location"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_below="@+id/editText_update_location"
+             />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/updateProfile_pic_button"
+            style="@android:style/Widget.Button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_baclground"
+            android:gravity="center"
+            android:text="update Profile Picture"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_below="@+id/updateProfile_map_button"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/updateProfile_email_button"
+            style="@android:style/Widget.Button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_baclground"
+            android:gravity="center"
+            android:text="update Email"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_below="@+id/updateProfile_pic_button"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/updateProfile_btn"
+            style="@android:style/Widget.Button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_baclground"
+            android:gravity="center"
+            android:text="update details"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_below="@+id/updateProfile_email_button"
+            />
+
+        <ProgressBar
+            android:id="@+id/progressBar_profile"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/indeterminate_circular_progress"
+            android:elevation="10dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>
