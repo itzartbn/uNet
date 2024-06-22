@@ -159,7 +159,7 @@
             />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/updateProfile_btn"
+            android:id="@+id/updatePassword_btn"
             style="@android:style/Widget.Button"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -171,6 +171,22 @@
             android:textSize="18sp"
             android:layout_below="@+id/updateProfile_email_button"
             />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/updateProfile_btn"
+            style="@android:style/Widget.Button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_baclground"
+            android:gravity="center"
+            android:text="Change password"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_below="@+id/updatePassword_btn"
+            />
+
+
 
         <ProgressBar
             android:id="@+id/progressBar_profile"

@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Mini_project"
         tools:targetApi="31">
         <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".UpdateEmailActivity"
             android:exported="false" />
         <activity

@@ -54,6 +54,17 @@ public class UpdateProfileActivity extends AppCompatActivity {
         //show profile data
         showProfile(firebaseUser);
 
+        //directing to chane password
+        Button passwordUpdateBtn = findViewById(R.id.updatePassword_btn);
+        passwordUpdateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent directPwUpdate = new Intent(UpdateProfileActivity.this, ChangePasswordActivity.class);
+                startActivity(directPwUpdate);
+            }
+        });
+
+
         //directing to update email
         Button updateEmailbtn = findViewById(R.id.updateProfile_email_button);
         updateEmailbtn.setOnClickListener(new View.OnClickListener() {
