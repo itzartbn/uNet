@@ -1,70 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
-    tools:context=".MainActivity"
-    android:gravity="center"
-    android:padding="16dp">
+    android:background="@color/white"
+    android:padding="0dp"
+    tools:context=".HomeActivity">
 
-    <LinearLayout
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homeRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:src="@drawable/logo2" />
-
-
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cources"
-            android:backgroundTint="@color/white"
-            android:textColor="#AA96DA"
-            android:textStyle="bold"
-            android:padding="18dp"
-            android:layout_marginTop="32dp"
-            android:textSize="20sp"
-            android:id="@+id/cources"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Calender"
-            android:backgroundTint="@color/white"
-            android:textColor="#AA96DA"
-            android:textStyle="bold"
-            android:padding="20dp"
-            android:layout_below="@id/cources"
-            android:layout_marginTop="32dp"
-            android:textSize="20sp"
-            android:id="@+id/calender"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Test Logout"
-            android:backgroundTint="@color/white"
-            android:textColor="#AA96DA"
-            android:textStyle="bold"
-            android:padding="20dp"
-            android:layout_below="@id/calender"
-            android:layout_marginTop="32dp"
-            android:textSize="20sp"
-            android:id="@+id/logout"/>
-
-
-
-
-
-    </LinearLayout>
-
-
-
-
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,8 +16,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -70,7 +73,7 @@ public class TaskFormFragment extends Fragment {
             FirebaseUser user = auth.getCurrentUser();
             if (user != null) {
                 String userId = user.getUid();
-                createTask(userId);
+                addTaskWithDepartment(userId);
             } else {
                 Toast.makeText(getContext(), "User not authenticated", Toast.LENGTH_SHORT).show();
             }
@@ -92,7 +95,27 @@ public class TaskFormFragment extends Fragment {
         datePickerDialog.show();
     }
 
-    private void createTask(String userId) {
+    private void addTaskWithDepartment(String userId) {
+        DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("Registered Users").child(userId);
+        userReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String department = snapshot.child("department").getValue(String.class);
+                    createTask(userId, department);
+                } else {
+                    Toast.makeText(getContext(), "User data not found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Failed to retrieve user data", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void createTask(String userId, String department) {
         String title = taskTitle.getText().toString();
         String duration = taskDuration.getText().toString();
         String description = taskDescription.getText().toString();
@@ -109,6 +132,7 @@ public class TaskFormFragment extends Fragment {
         taskData.put("taskDateTime", duration);
         taskData.put("taskDescription", description);
         taskData.put("userId", userId);
+        taskData.put("department", department);
 
         if (taskId != null) {
             databaseReference.child(taskId).setValue(taskData)

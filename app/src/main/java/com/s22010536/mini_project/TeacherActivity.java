@@ -111,13 +111,7 @@ public class TeacherActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    checkUserRole(authProfile.getCurrentUser().getUid())
-
-
-
-
-
-                    ;
+                    checkUserRole(authProfile.getCurrentUser().getUid());
                 } else {
                     try {
                         throw task.getException();
