@@ -1,3 +1,4 @@
+// HomeActivity.java
 package com.s22010536.mini_project;
 
 import android.os.Bundle;
@@ -41,7 +42,7 @@ public class HomeActivity extends Fragment {
         recyclerView = view.findViewById(R.id.homeRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         taskList = new ArrayList<>();
-        taskAdapter = new TaskAdapter(taskList);
+        taskAdapter = new TaskAdapter(getActivity(), taskList); // Pass the activity here
         recyclerView.setAdapter(taskAdapter);
 
         auth = FirebaseAuth.getInstance();

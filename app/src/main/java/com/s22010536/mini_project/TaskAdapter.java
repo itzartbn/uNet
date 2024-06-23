@@ -1,3 +1,4 @@
+// TaskAdapter.java
 package com.s22010536.mini_project;
 
 import android.view.LayoutInflater;
@@ -6,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 import java.util.List;
@@ -13,8 +15,10 @@ import java.util.List;
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
     private List<Task> taskList;
+    private FragmentActivity activity;
 
-    public TaskAdapter(List<Task> taskList) {
+    public TaskAdapter(FragmentActivity activity, List<Task> taskList) {
+        this.activity = activity;
         this.taskList = taskList;
     }
 
@@ -31,13 +35,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.taskTitle.setText(task.getTaskTitle());
         holder.taskDateTime.setText(task.getTaskDateTime());
 
-//        String teacherImageUrl = task.getTeacherImageUrl();
-//        if (teacherImageUrl != null && !teacherImageUrl.isEmpty()) {
-//            Picasso.get().load(teacherImageUrl).into(holder.teacherImage);
-//        } else {
-//            holder.teacherImage.setImageResource(R.drawable.default_image); // Default image resource
-//        }
-        holder.teacherImage.setImageResource(R.drawable.default_dp); // Default image resource
+        holder.teacherImage.setImageResource(R.drawable.default_dp);
+
+        holder.itemView.setOnClickListener(v -> {
+            TaskDetailDialogFragment dialogFragment = TaskDetailDialogFragment.newInstance(
+                    task.getTaskTitle(),
+                    task.getTaskDescription(),
+                    task.getTaskDateTime()
+            );
+            dialogFragment.show(activity.getSupportFragmentManager(), "TaskDetailDialogFragment");
+        });
     }
 
     @Override
