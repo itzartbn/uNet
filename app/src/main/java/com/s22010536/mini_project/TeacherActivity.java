@@ -138,7 +138,7 @@ public class TeacherActivity extends AppCompatActivity {
                 if (snapshot.exists()) {
                     String role = snapshot.child("role").getValue(String.class);
                     if ("teacher".equals(role)) {
-                        Intent loginToHome = new Intent(TeacherActivity.this, NotificationActivity.class);
+                        Intent loginToHome = new Intent(TeacherActivity.this, TeacherCommonActivity.class);
                         startActivity(loginToHome);
                         Toast.makeText(TeacherActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     } else {
