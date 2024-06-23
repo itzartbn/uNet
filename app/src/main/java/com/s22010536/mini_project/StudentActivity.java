@@ -122,7 +122,7 @@ public class StudentActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Intent loginToHome = new Intent(StudentActivity.this, HomeActivity.class);
+                    Intent loginToHome = new Intent(StudentActivity.this, CommonActivity.class);
                     startActivity(loginToHome);
                     Toast.makeText(StudentActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
 
@@ -171,7 +171,7 @@ public class StudentActivity extends AppCompatActivity {
         if (authProfile.getCurrentUser() != null) {
             Toast.makeText(StudentActivity.this, "Already logged in", Toast.LENGTH_SHORT).show();
 
-            startActivity(new Intent(StudentActivity.this,HomeActivity.class));
+            startActivity(new Intent(StudentActivity.this,CommonActivity.class));
             finish();
         }else {
             Toast.makeText(StudentActivity.this, "You can log in!", Toast.LENGTH_SHORT).show();

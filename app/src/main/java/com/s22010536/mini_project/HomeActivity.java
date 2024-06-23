@@ -2,9 +2,13 @@ package com.s22010536.mini_project;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends Fragment {
 
     private RecyclerView recyclerView;
     private TaskAdapter taskAdapter;
@@ -27,15 +31,15 @@ public class HomeActivity extends AppCompatActivity {
     private DatabaseReference tasksReference;
     private DatabaseReference usersReference;
 
-    private static final String TAG = "HomeActivity";
+    private static final String TAG = "HomeFragment";
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_home, container, false);
 
-        recyclerView = findViewById(R.id.homeRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = view.findViewById(R.id.homeRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         taskList = new ArrayList<>();
         taskAdapter = new TaskAdapter(taskList);
         recyclerView.setAdapter(taskAdapter);
@@ -49,9 +53,11 @@ public class HomeActivity extends AppCompatActivity {
             Log.d(TAG, "User authenticated: " + user.getUid());
             fetchUserProgram(user.getUid());
         } else {
-            Toast.makeText(this, "User not authenticated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "User not authenticated", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "User not authenticated");
         }
+
+        return view;
     }
 
     private void fetchUserProgram(String userId) {
@@ -63,14 +69,14 @@ public class HomeActivity extends AppCompatActivity {
                     Log.d(TAG, "User program: " + program);
                     fetchTasksByDepartment(program);
                 } else {
-                    Toast.makeText(HomeActivity.this, "User data not found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "User data not found", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "User data not found for ID: " + userId);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(HomeActivity.this, "Failed to retrieve user data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Failed to retrieve user data", Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "Failed to retrieve user data: " + error.getMessage());
             }
         });
@@ -92,7 +98,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(HomeActivity.this, "Failed to retrieve tasks", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Failed to retrieve tasks", Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "Failed to retrieve tasks: " + error.getMessage());
             }
         });
