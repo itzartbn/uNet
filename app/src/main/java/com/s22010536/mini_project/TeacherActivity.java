@@ -61,7 +61,6 @@ public class TeacherActivity extends AppCompatActivity {
             }
         });
 
-
         Button btnreg = findViewById(R.id.newSignup);
         btnreg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,9 +140,11 @@ public class TeacherActivity extends AppCompatActivity {
                         Intent loginToHome = new Intent(TeacherActivity.this, TeacherCommonActivity.class);
                         startActivity(loginToHome);
                         Toast.makeText(TeacherActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(TeacherActivity.this, "You are not authorized to log in as a teacher", Toast.LENGTH_SHORT).show();
+                    } else if ("student".equals(role)) {
+                        Toast.makeText(TeacherActivity.this, "You are logged in as a student. Please use the student login.", Toast.LENGTH_LONG).show();
                         FirebaseAuth.getInstance().signOut();
+                    } else {
+                        Toast.makeText(TeacherActivity.this, "User role not found", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(TeacherActivity.this, "User role not found", Toast.LENGTH_SHORT).show();
@@ -160,4 +161,30 @@ public class TeacherActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (authProfile.getCurrentUser() != null) {
+            String userId = authProfile.getCurrentUser().getUid();
+            DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
+            referenceProfile.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    ReadWriteUserDetails readUserDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                    if (readUserDetails != null && "teacher".equals(readUserDetails.role)) {
+                        Toast.makeText(TeacherActivity.this, "You are already logged in", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(TeacherActivity.this, TeacherCommonActivity.class));
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(TeacherActivity.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+                }
+            });
+        } else {
+            Toast.makeText(TeacherActivity.this, "You can log in!", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

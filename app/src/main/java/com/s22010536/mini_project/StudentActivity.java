@@ -26,6 +26,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class StudentActivity extends AppCompatActivity {
 
     private EditText editTextLoginMail, editTextLoginPwd;
@@ -43,8 +49,6 @@ public class StudentActivity extends AppCompatActivity {
         editTextLoginMail = findViewById(R.id.login_mail);
         editTextLoginPwd = findViewById(R.id.login_password);
         progressBar = findViewById(R.id.loginProgress);
-
-
 
         //password hiding eye
         ImageView imageViewShowHidePwd = findViewById(R.id.imageView_show_hide_pwd);
@@ -65,7 +69,6 @@ public class StudentActivity extends AppCompatActivity {
             }
         });
 
-
         //Directiong to sign in page
         btnreg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +77,7 @@ public class StudentActivity extends AppCompatActivity {
                 startActivity(intentReg);
             }
         });
+
         //avoid logged user login again
         authProfile = FirebaseAuth.getInstance();
 
@@ -111,10 +115,6 @@ public class StudentActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
     }
 
     private void loginUser(String textMail, String textPwd) {
@@ -125,15 +125,12 @@ public class StudentActivity extends AppCompatActivity {
                     Intent loginToHome = new Intent(StudentActivity.this, CommonActivity.class);
                     startActivity(loginToHome);
                     Toast.makeText(StudentActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
-
-
                 }else {
                     try {
                         throw task.getException();
                     }catch (FirebaseAuthInvalidUserException e) {
-                        editTextLoginMail.setError("User does not exists");
+                        editTextLoginMail.setError("User does not exist");
                         editTextLoginMail.requestFocus();
-
                     }catch (FirebaseAuthInvalidCredentialsException e) {
                         editTextLoginMail.setError("Invalid Credentials");
                         editTextLoginMail.requestFocus();
@@ -141,39 +138,39 @@ public class StudentActivity extends AppCompatActivity {
                         Log.e(TAG, e.getMessage());
                         Toast.makeText(StudentActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-
-
                 }
                 progressBar.setVisibility(View.GONE);
             }
         });
-
-
     }
 
-    /* //Check if user is already logged in
+    // Check if user is already logged in
     @Override
     protected void onStart() {
         super.onStart();
         if (authProfile.getCurrentUser() != null) {
-            Toast.makeText(StudentAtivity.this, "You are already logged in", Toast.LENGTH_SHORT).show();
-            Intent loginToHome = new Intent(StudentAtivity.this, HomeActivity.class);
-            startActivity(loginToHome);
-        }else{
-            Toast.makeText(StudentAtivity.this, "You can log in now", Toast.LENGTH_SHORT).show();
+            String userId = authProfile.getCurrentUser().getUid();
+            DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
+            referenceProfile.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    ReadWriteUserDetails readUserDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                    if (readUserDetails != null && "teacher".equals(readUserDetails.role)) {
+                        Toast.makeText(StudentActivity.this, "You are already logged in as a teacher. Please use teacher login", Toast.LENGTH_LONG).show();
+                        authProfile.signOut();
+                    } else {
+                        Toast.makeText(StudentActivity.this, "You are already logged in", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(StudentActivity.this, CommonActivity.class));
+                        finish();
+                    }
+                }
 
-        }
-    }*/
-//if user already logged in no login again needed
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (authProfile.getCurrentUser() != null) {
-            Toast.makeText(StudentActivity.this, "Already logged in", Toast.LENGTH_SHORT).show();
-
-            startActivity(new Intent(StudentActivity.this,CommonActivity.class));
-            finish();
-        }else {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(StudentActivity.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+                }
+            });
+        } else {
             Toast.makeText(StudentActivity.this, "You can log in!", Toast.LENGTH_SHORT).show();
         }
     }
