@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
@@ -22,11 +23,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-public class TeacherCommonActivity extends AppCompatActivity {
+public class TeacherCommonActivity extends AppCompatActivity implements OnTaskAdded {
 
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
     private ImageView profileImageView;
+    private FragmentAdapter fragmentAdapter;
 
     private FirebaseAuth authProfile;
 
@@ -41,16 +43,24 @@ public class TeacherCommonActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         profileImageView = findViewById(R.id.home_pp);
 
-        viewPager.setAdapter(new FragmentAdapter(this));
+        fragmentAdapter = new FragmentAdapter(this);
+        viewPager.setAdapter(fragmentAdapter);
 
-        new TabLayoutMediator(tabLayout, viewPager,
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> {
-                    if (position == 0) {
-                        tab.setText("Home");
-                    } else {
-                        tab.setText("Settings");
+                    switch (position) {
+                        case 0:
+                            tab.setText("Home");
+                            break;
+                        case 1:
+                            tab.setText("Notifications");
+                            break;
+                        case 2:
+                            tab.setText("Settings");
+                            break;
                     }
-                }).attach();
+                });
+        tabLayoutMediator.attach();
 
         profileImageView.setOnClickListener(v -> {
             Intent intent = new Intent(TeacherCommonActivity.this, UserProfileActivity.class);
@@ -61,6 +71,18 @@ public class TeacherCommonActivity extends AppCompatActivity {
             loadUserProfile(firebaseUser);
         } else {
             Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onTaskAddedToList() {
+        // Switch to the Home tab
+        viewPager.setCurrentItem(0);
+
+        // Refresh the TeacherHomeActivity fragment
+        Fragment fragment = fragmentAdapter.getFragment(0);
+        if (fragment != null && fragment instanceof TeacherHomeActivity) {
+            ((TeacherHomeActivity) fragment).refreshTasks();
         }
     }
 
@@ -102,23 +124,31 @@ public class TeacherCommonActivity extends AppCompatActivity {
     }
 
     private static class FragmentAdapter extends FragmentStateAdapter {
+
+        private Fragment[] fragments;
+
         public FragmentAdapter(TeacherCommonActivity activity) {
             super(activity);
+            fragments = new Fragment[] {
+                    new TeacherHomeActivity(),
+                    new TaskFormFragment(),
+                    new SettingsFragment()
+            };
         }
 
         @NonNull
         @Override
         public Fragment createFragment(int position) {
-            if (position == 0) {
-                return new HomeActivity();
-            } else {
-                return new SettingsFragment();
-            }
+            return fragments[position];
         }
 
         @Override
         public int getItemCount() {
-            return 2;
+            return 3; // Number of tabs
+        }
+
+        public Fragment getFragment(int position) {
+            return fragments[position];
         }
     }
 }
