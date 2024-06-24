@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:background="@drawable/gradient_color_background">
 
-    <!-- Toolbar -->
+
 
 
 
@@ -176,13 +176,20 @@
             android:paddingHorizontal="100dp"/>
 
         <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/indeterminate_circular_progress"
+            android:layout_marginTop="32dp"
             android:elevation="10dp"
-            android:visibility="gone"
-            android:id="@+id/progressBar"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone" />
 
 
     </RelativeLayout>

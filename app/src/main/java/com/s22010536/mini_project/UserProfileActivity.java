@@ -31,7 +31,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private String fullName, email, sid, program, location;
     private ShapeableImageView profileDp;
     private FirebaseAuth authProfile;
-    private ImageView updateProfileBtn;
+    private ImageView updateProfileBtn, profileBackBtn;
     private String userRole;
 
     @Override
@@ -48,9 +48,22 @@ public class UserProfileActivity extends AppCompatActivity {
         profileDp = findViewById(R.id.profileDp);
         Button profileLogoutbtn = findViewById(R.id.profile_logout_btn);
         updateProfileBtn = findViewById(R.id.edit_button);
+        profileBackBtn = findViewById(R.id.profile_back_button);
 
         authProfile = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
+
+
+        //back button
+
+        profileBackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfileActivity.this, CommonActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         // Logout button
         profileLogoutbtn.setOnClickListener(new View.OnClickListener() {

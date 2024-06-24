@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editText_new_mail"
                 android:layout_below="@id/textView_new_mail"
-                android:hint="Enter your Passwod"
+                android:hint="Enter your New Email"
                 android:inputType="textEmailAddress"
                 android:padding="6dp"
                 android:textSize="16sp"

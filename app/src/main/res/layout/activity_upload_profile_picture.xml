@@ -40,7 +40,7 @@
             android:layout_margin="32dp"
             android:background="@drawable/btn_baclground"
             android:gravity="center"
-            android:text="I'm a Student"
+            android:text="open Gallery"
             android:textColor="@color/white"
             android:textSize="18sp"/>
 
@@ -54,13 +54,13 @@
             android:layout_margin="3dp"
             android:background="@drawable/btn_baclground"
             android:gravity="center"
-            android:text="I'm a Student"
+            android:text="Oprn camera"
             android:textColor="@color/white"
             android:textSize="18sp"/>
 
         <ImageView
             android:id="@+id/imageview_profile_dp"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:src="@drawable/default_dp"
             android:layout_height="300dp"
             android:layout_below="@id/camera_btn"
