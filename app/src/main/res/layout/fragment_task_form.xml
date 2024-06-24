@@ -32,8 +32,7 @@
         android:textStyle="bold"
         android:layout_below="@id/task_title"
         android:layout_marginTop="16dp"
-        android:focusable="false"
-        android:clickable="true" />
+         />
 
     <EditText
         android:id="@+id/task_description"
@@ -49,8 +48,7 @@
         android:textStyle="bold"
         android:layout_below="@id/task_duration"
         android:layout_marginTop="16dp"
-        android:focusable="false"
-        android:clickable="true" />
+      />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/send_task_button"
