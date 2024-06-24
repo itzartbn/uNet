@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,6 +32,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private ShapeableImageView profileDp;
     private FirebaseAuth authProfile;
     private ImageView updateProfileBtn;
+    private String userRole;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +52,7 @@ public class UserProfileActivity extends AppCompatActivity {
         authProfile = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
 
-
-        //edit profile button
-        updateProfileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserProfileActivity.this, UpdateProfileActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-//logout button
+        // Logout button
         profileLogoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +64,7 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-        if (firebaseUser == null){
+        if (firebaseUser == null) {
             Toast.makeText(UserProfileActivity.this, "Oops!, Something went wrong", Toast.LENGTH_LONG).show();
         } else {
             progressBar.setVisibility(View.VISIBLE);
@@ -89,10 +80,6 @@ public class UserProfileActivity extends AppCompatActivity {
         });
     }
 
-
-
-
-
     private void showUserProfile(FirebaseUser firebaseUser) {
         String userId = firebaseUser.getUid();
         DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
@@ -103,8 +90,14 @@ public class UserProfileActivity extends AppCompatActivity {
                 if (readUserDetails != null) {
                     fullName = firebaseUser.getDisplayName();
                     email = firebaseUser.getEmail();
-                    sid = readUserDetails.sid;
-                    program = readUserDetails.program;
+                    userRole = readUserDetails.role;
+                    if ("teacher".equals(userRole)) {
+                        sid = readUserDetails.tid;
+                        program = readUserDetails.department;
+                    } else {
+                        sid = readUserDetails.sid;
+                        program = readUserDetails.program;
+                    }
                     location = readUserDetails.location;
 
                     textViewFullname.setText(fullName);
@@ -113,7 +106,7 @@ public class UserProfileActivity extends AppCompatActivity {
                     textViewProgram.setText(program);
                     textViewLocation.setText(location);
 
-//set profile picture
+                    // Set profile picture
                     Uri uri = firebaseUser.getPhotoUrl();
                     Picasso.get()
                             .load(uri)
@@ -130,6 +123,20 @@ public class UserProfileActivity extends AppCompatActivity {
                                     Toast.makeText(UserProfileActivity.this, "Failed to load profile picture", Toast.LENGTH_SHORT).show();
                                 }
                             });
+
+                    // Set onClickListener for update profile button after fetching user details
+                    updateProfileBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if ("teacher".equals(userRole)) {
+                                Intent intent = new Intent(UserProfileActivity.this, TeacherUpdateProfileActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(UserProfileActivity.this, UpdateProfileActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    });
                 } else {
                     Toast.makeText(UserProfileActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
                 }

@@ -1,65 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UploadProfilePictureActivity">
+    tools:context=".UploadProfilePictureActivity"
+    android:background="@drawable/gradient_color_background">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+
         android:padding="15dp"
-        android:layout_margin="15dp"
-        android:background="@color/white">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/textview_upload_head"
-            android:text="Upload your profile pic here"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload a Profile Picture"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:layout_marginTop="32dp" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/pic_choose_btn"
+            style="@android:style/Widget.Button"
             android:layout_below="@id/textview_upload_head"
-            android:layout_marginTop="20dp"
-            android:text="Choose Picture"
-            android:layout_marginRight="70dp"
-            android:layout_marginLeft="70dp"/>
-
-        <Button
-            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:background="@drawable/btn_baclground"
+            android:gravity="center"
+            android:text="I'm a Student"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/camera_btn"
+            style="@android:style/Widget.Button"
             android:layout_below="@id/pic_choose_btn"
-            android:layout_marginTop="20dp"
-            android:text="Open Camera"
-            android:layout_marginRight="70dp"
-            android:layout_marginLeft="70dp"/>
+            android:layout_centerHorizontal="true"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:background="@drawable/btn_baclground"
+            android:gravity="center"
+            android:text="I'm a Student"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
             android:id="@+id/imageview_profile_dp"
+            android:layout_width="wrap_content"
+            android:src="@drawable/default_dp"
+            android:layout_height="300dp"
+            android:layout_below="@id/camera_btn"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:background="@drawable/pp_border"
-            android:layout_below="@id/camera_btn"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/upload_picture_btn"
+            style="@android:style/Widget.Button"
+            android:background="@drawable/btn_baclground"
             android:layout_below="@id/imageview_profile_dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:text="Upload Picture"
-            android:layout_marginRight="70dp"
-            android:layout_marginLeft="70dp"/>
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            />
 
         <ProgressBar
             android:id="@+id/progressBar_profile"
@@ -71,4 +95,4 @@
             android:indeterminateDrawable="@drawable/indeterminate_circular_progress"
             android:visibility="gone" />
     </RelativeLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

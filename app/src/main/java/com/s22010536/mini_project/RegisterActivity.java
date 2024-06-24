@@ -64,8 +64,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         progressBar.setProgress(0);
 
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Student");
+        //setSupportActionBar(toolbar);
+        //getSupportActionBar().setTitle("Student");
 
         Toast.makeText(RegisterActivity.this,"You can register now",Toast.LENGTH_LONG).show();
 
@@ -172,7 +172,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                            //Enter User data into firebase realtime databse
-                           ReadWriteUserDetails writeUserDetails = new ReadWriteUserDetails(textEmail, textProgram, textLocation, textSid);
+                           ReadWriteUserDetails writeUserDetails = new ReadWriteUserDetails(textFullName, textProgram, textLocation, textSid);
 
                            //Extracting user reference from database for "registered Users"
                            DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");

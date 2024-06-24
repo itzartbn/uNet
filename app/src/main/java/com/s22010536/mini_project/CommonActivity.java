@@ -54,7 +54,7 @@ public class CommonActivity extends AppCompatActivity {
                 }).attach();
 
         profileImageView.setOnClickListener(v -> {
-            Intent intent = new Intent(CommonActivity.this, UpdateProfileActivity.class);
+            Intent intent = new Intent(CommonActivity.this, UserProfileActivity.class);
             startActivity(intent);
         });
 

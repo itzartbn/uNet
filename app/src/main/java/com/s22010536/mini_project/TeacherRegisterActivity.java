@@ -124,10 +124,9 @@ public class TeacherRegisterActivity extends AppCompatActivity {
                     // Save user details to Realtime Database
                     Map<String, Object> userDetails = new HashMap<>();
                     userDetails.put("fullName", textFullName);
-                    userDetails.put("email", textEmail);
                     userDetails.put("department", textDepartment);
                     userDetails.put("location", textLocation);
-                    userDetails.put("employeeId", textEmployeeId);
+                    userDetails.put("tid", textEmployeeId);
                     userDetails.put("role", "teacher");
 
                     databaseReference.child(firebaseUser.getUid()).setValue(userDetails).addOnCompleteListener(new OnCompleteListener<Void>() {

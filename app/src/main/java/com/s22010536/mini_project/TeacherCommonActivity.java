@@ -53,7 +53,7 @@ public class TeacherCommonActivity extends AppCompatActivity {
                 }).attach();
 
         profileImageView.setOnClickListener(v -> {
-            Intent intent = new Intent(TeacherCommonActivity.this, UpdateProfileActivity.class);
+            Intent intent = new Intent(TeacherCommonActivity.this, UserProfileActivity.class);
             startActivity(intent);
         });
 

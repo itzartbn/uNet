@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".UpdateProfileActivity"
     android:background="@drawable/gradient_color_background">
-    
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:layout_margin="15dp"
-       >
+        >
 
         <TextView
             android:id="@+id/textView_updateProfile_head"
@@ -69,7 +69,7 @@
             android:layout_below="@id/update_profile_program"
             android:inputType="textPersonName"
             android:padding="6sp"
-            android:hint="Enter the Degree Program"
+            android:hint="Enter the Department"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
             />
@@ -92,7 +92,7 @@
             android:layout_below="@id/update_profile_sid"
             android:inputType="textPersonName"
             android:padding="6sp"
-            android:hint="Enter your student ID"
+            android:hint="Enter your Teacher ID"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
             />
@@ -133,7 +133,7 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:layout_below="@+id/editText_update_location"
-             />
+            />
 
 
 
