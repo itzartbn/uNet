@@ -1,3 +1,5 @@
+// RegisterActivity.java
+
 package com.s22010536.mini_project;
 
 import android.content.Intent;
@@ -6,13 +8,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.ArrayAdapter;
-import androidx.appcompat.widget.Toolbar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -36,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Spinner programSpinner;
     private static final String TAG = "RegisterActivity";
     private ProgressBar progressBar;
+    private static final int LOCATION_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         Button regbtn = findViewById(R.id.signupbtn);
         Button locationbtn = findViewById(R.id.locationbtn);
-        //Toolbar toolbar = findViewById(R.id.toolbar);
         progressBar = findViewById(R.id.progressBar);
 
         progressBar.setProgress(0);
@@ -69,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentLoc = new Intent(RegisterActivity.this, LocationActivity.class);
-                startActivity(intentLoc);
+                startActivityForResult(intentLoc, LOCATION_REQUEST_CODE);
             }
         });
 
@@ -134,6 +135,19 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LOCATION_REQUEST_CODE && resultCode == RESULT_OK) {
+            if (data != null) {
+                String cityName = data.getStringExtra("city_name");
+                if (cityName != null) {
+                    editTextLocation.setText(cityName);
+                }
+            }
+        }
     }
 
     private void registerUser(String textFullName, String textEmail, String textProgram, String textLocation, String textSid, String textPassword) {
