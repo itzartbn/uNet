@@ -5,6 +5,12 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string-array name="programs_array">
+        <item>Software Engineering</item>
+    </string-array>
+    <string-array name="departments_array">
+        <item>Software Engineering</item>
+    </string-array>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

@@ -6,10 +6,13 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +34,8 @@ import java.util.Map;
 
 public class TeacherRegisterActivity extends AppCompatActivity {
 
-    private EditText editTextFullName, editTextEmail, editTextDepartment, editTextLocation, editTextEmployeeId, editTextPassword, editTextConfirmPassword;
+    private EditText editTextFullName, editTextEmail, editTextLocation, editTextEmployeeId, editTextPassword, editTextConfirmPassword;
+    private Spinner spinnerDepartment;
     private static final String TAG = "TeacherRegisterActivity";
     private ProgressBar progressBar;
 
@@ -43,21 +47,35 @@ public class TeacherRegisterActivity extends AppCompatActivity {
 
         Button regBtn = findViewById(R.id.signupbtn);
         progressBar = findViewById(R.id.progressBar);
+        Button teacherLocationBtn = findViewById(R.id.tecLocationbtn);
 
         editTextFullName = findViewById(R.id.name);
         editTextEmail = findViewById(R.id.email);
-        editTextDepartment = findViewById(R.id.department);
+        spinnerDepartment = findViewById(R.id.department_spinner);
         editTextLocation = findViewById(R.id.location);
         editTextEmployeeId = findViewById(R.id.eid);
         editTextPassword = findViewById(R.id.password);
         editTextConfirmPassword = findViewById(R.id.repassword);
+
+        // Populate the spinner with departments
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.departments_array, R.layout.spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDepartment.setAdapter(adapter);
+
+        teacherLocationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentLoc = new Intent(TeacherRegisterActivity.this, LocationActivity.class);
+                startActivity(intentLoc);
+            }
+        });
 
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String textFullName = editTextFullName.getText().toString();
                 String textEmail = editTextEmail.getText().toString();
-                String textDepartment = editTextDepartment.getText().toString();
+                String textDepartment = spinnerDepartment.getSelectedItem().toString();
                 String textLocation = editTextLocation.getText().toString();
                 String textEmployeeId = editTextEmployeeId.getText().toString();
                 String textPassword = editTextPassword.getText().toString();
@@ -73,8 +91,7 @@ public class TeacherRegisterActivity extends AppCompatActivity {
                     editTextEmail.requestFocus();
                 } else if (TextUtils.isEmpty(textDepartment)) {
                     Toast.makeText(TeacherRegisterActivity.this, "Please Enter the department", Toast.LENGTH_LONG).show();
-                    editTextDepartment.setError("Department is Required");
-                    editTextDepartment.requestFocus();
+                    spinnerDepartment.requestFocus();
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(textEmail).matches()) {
                     Toast.makeText(TeacherRegisterActivity.this, "Please re-Enter the Email", Toast.LENGTH_LONG).show();
                     editTextEmail.setError("Valid Email Required");

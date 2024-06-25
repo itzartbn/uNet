@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
+    tools:context=".TeacherRegisterActivity"
     android:background="@color/main_background">
 
     <LinearLayout
@@ -13,16 +13,11 @@
         android:orientation="vertical"
         android:background="@drawable/gradient_color_background">
 
-
-
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:layout_margin="15dp"
-           >
+            android:layout_margin="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -75,25 +70,20 @@
                 android:drawableLeft="@drawable/baseline_email_24"
                 android:drawablePadding="20dp"/>
 
-            <EditText
-                android:id="@+id/department"
+            <Spinner
+                android:id="@+id/department_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/email"
                 android:layout_margin="10dp"
                 android:background="@drawable/pp_border"
-                android:drawableLeft="@drawable/baseline_menu_book_24"
-                android:drawablePadding="20dp"
-                android:hint="Department"
-                android:padding="20dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:padding="20dp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/location"
-                android:layout_below="@id/department"
+                android:layout_below="@id/department_spinner"
                 android:background="@drawable/pp_border"
                 android:hint="Location"
                 android:textColorHint="@color/white"
@@ -106,7 +96,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/locationbtn"
+                android:id="@+id/tecLocationbtn"
                 android:text="Track Location"
                 android:textColor="@color/white"
                 android:layout_below="@id/location"
@@ -183,8 +173,6 @@
                 android:elevation="10dp"
                 android:visibility="gone"
                 android:id="@+id/progressBar"/>
-
-
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>
