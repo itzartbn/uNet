@@ -26,6 +26,13 @@
             android:src="@drawable/person_icon_topbar"
             android:layout_alignParentRight="true"
             app:shapeAppearanceOverlay="@style/roundedImageRounded"/>
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="50dp"
+            android:src="@drawable/colord_main_logo"
+            android:foregroundGravity="left"
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
 
     <com.google.android.material.tabs.TabLayout

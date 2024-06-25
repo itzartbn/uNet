@@ -59,9 +59,35 @@ public class UserProfileActivity extends AppCompatActivity {
         profileBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserProfileActivity.this, CommonActivity.class);
-                startActivity(intent);
-                finish();
+                if(firebaseUser != null){
+                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Registered Users").child(firebaseUser.getUid());
+                    userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.exists()){
+                                String role = snapshot.child("role").getValue(String.class);
+                                if(role.equals("teacher")){
+                                    Intent intent = new Intent(UserProfileActivity.this, TeacherCommonActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    Intent intent = new Intent(UserProfileActivity.this, CommonActivity.class);
+                                    startActivity(intent);
+
+                                }
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(UserProfileActivity.this, "Error fetching user data", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                } else {
+                    Toast.makeText(UserProfileActivity.this, "User not logged in", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

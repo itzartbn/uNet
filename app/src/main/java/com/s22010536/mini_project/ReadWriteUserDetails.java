@@ -12,6 +12,7 @@ public class ReadWriteUserDetails {
         this.program = textProgram;
         this.location = textLocation;
         this.sid = textSid;
+
     }
 
     // Constructor for teachers
