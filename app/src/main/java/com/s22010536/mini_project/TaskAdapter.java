@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
@@ -39,6 +38,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         holder.itemView.setOnClickListener(v -> {
             TaskDetailDialogFragment dialogFragment = TaskDetailDialogFragment.newInstance(
+                    task.getTaskId(), // Pass taskId
                     task.getTaskTitle(),
                     task.getTaskDescription(),
                     task.getTaskDateTime()
