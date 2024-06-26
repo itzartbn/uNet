@@ -69,6 +69,9 @@ public class TaskFormFragment extends Fragment {
 
         taskDuration.setOnClickListener(v -> showDateTimePicker());
 
+
+
+        // Send task button click listener
         sendTaskButton.setOnClickListener(v -> {
             FirebaseUser user = auth.getCurrentUser();
             if (user != null) {
@@ -82,6 +85,7 @@ public class TaskFormFragment extends Fragment {
         return view;
     }
 
+    //date and time picker
     private void showDateTimePicker() {
         final Calendar calendar = Calendar.getInstance();
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
@@ -95,11 +99,14 @@ public class TaskFormFragment extends Fragment {
         datePickerDialog.show();
     }
 
+    // Add task with department
     private void addTaskWithDepartment(String userId) {
         DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("Registered Users").child(userId);
         userReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                // Get department from user data
                 if (snapshot.exists()) {
                     String department = snapshot.child("department").getValue(String.class);
                     createTask(userId, department);
@@ -115,6 +122,7 @@ public class TaskFormFragment extends Fragment {
         });
     }
 
+    // Create task
     private void createTask(String userId, String department) {
         String title = taskTitle.getText().toString();
         String duration = taskDuration.getText().toString();
@@ -125,6 +133,7 @@ public class TaskFormFragment extends Fragment {
             return;
         }
 
+        // Create task data
         String taskId = databaseReference.push().getKey();
         Map<String, Object> taskData = new HashMap<>();
         taskData.put("taskId", taskId);

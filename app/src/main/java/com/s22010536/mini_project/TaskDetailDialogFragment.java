@@ -34,6 +34,7 @@ public class TaskDetailDialogFragment extends DialogFragment {
     public static TaskDetailDialogFragment newInstance(String taskId, String taskTitle, String taskDescription, String taskDuration) {
         TaskDetailDialogFragment fragment = new TaskDetailDialogFragment();
         Bundle args = new Bundle();
+        // Pass taskId, taskTitle, taskDescription, and taskDuration to the fragment
         args.putString(ARG_TASK_ID, taskId);
         args.putString(ARG_TASK_TITLE, taskTitle);
         args.putString(ARG_TASK_DESCRIPTION, taskDescription);
@@ -84,6 +85,7 @@ public class TaskDetailDialogFragment extends DialogFragment {
         usersReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //hide deletebutton for students and show for teachers
                 if (snapshot.exists()) {
                     String role = snapshot.child("role").getValue(String.class);
                     if ("teacher".equals(role)) {

@@ -65,9 +65,8 @@ public class HomeActivity extends Fragment {
         // Stop periodic task fetching when the fragment is paused
         handler.removeCallbacks(fetchRunnable);
     }
-
+    // Fetch tasks from the database
     private void fetchTasks() {
-        // Implement your task fetching logic here
         FirebaseUser user = auth.getCurrentUser();
         if (user != null) {
             fetchUserProgram(user.getUid());
@@ -78,13 +77,13 @@ public class HomeActivity extends Fragment {
 
 
     private void showNotification(Task task) {
-        // Build your notification
+        // Build notification
         NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null) {
             return;
         }
 
-        // Create a unique notification channel ID and name for Android Oreo and above
+        // Create a unique notification channel ID and name
         String channelId = "task_notification_channel";
         CharSequence channelName = "Task Notifications";
         int importance = NotificationManager.IMPORTANCE_DEFAULT;
@@ -110,8 +109,8 @@ public class HomeActivity extends Fragment {
 
     // Generate a unique notification ID based on the task ID
     private int generateNotificationId(String taskId) {
-        // Use a hash function or other method to generate a unique ID
-        return taskId.hashCode(); // Example: Using hashCode of the task ID
+        //generate a unique ID
+        return taskId.hashCode();
     }
     @Nullable
     @Override

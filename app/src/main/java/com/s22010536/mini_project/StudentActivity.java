@@ -78,7 +78,7 @@ public class StudentActivity extends AppCompatActivity {
             }
         });
 
-        //avoid logged user login again
+      //Firebase Authentication
         authProfile = FirebaseAuth.getInstance();
 
         //forgot password button
@@ -118,6 +118,8 @@ public class StudentActivity extends AppCompatActivity {
     }
 
     private void loginUser(String textMail, String textPwd) {
+
+        //sign in with email and password method
         authProfile.signInWithEmailAndPassword(textMail, textPwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -126,6 +128,7 @@ public class StudentActivity extends AppCompatActivity {
                     startActivity(loginToHome);
                     Toast.makeText(StudentActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
                 }else {
+                    //error handling
                     try {
                         throw task.getException();
                     }catch (FirebaseAuthInvalidUserException e) {
@@ -157,7 +160,7 @@ public class StudentActivity extends AppCompatActivity {
                     ReadWriteUserDetails readUserDetails = snapshot.getValue(ReadWriteUserDetails.class);
                     if (readUserDetails != null && "teacher".equals(readUserDetails.role)) {
                         Toast.makeText(StudentActivity.this, "You are already logged in as a teacher. Please use teacher login", Toast.LENGTH_LONG).show();
-                        authProfile.signOut();
+                        startActivity(new Intent(StudentActivity.this, TeacherActivity.class));
                     } else {
                         Toast.makeText(StudentActivity.this, "You are already logged in", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(StudentActivity.this, CommonActivity.class));

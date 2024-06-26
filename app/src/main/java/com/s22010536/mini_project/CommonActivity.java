@@ -33,6 +33,8 @@ public class CommonActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // Set the layout of the activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_common);
         authProfile = FirebaseAuth.getInstance();
@@ -42,8 +44,10 @@ public class CommonActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         profileImageView = findViewById(R.id.home_pp);
 
+        // Set the adapter for the view pager
         viewPager.setAdapter(new FragmentAdapter(this));
 
+        // Set the tab layout sections
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> {
                     if (position == 0) {
@@ -53,11 +57,13 @@ public class CommonActivity extends AppCompatActivity {
                     }
                 }).attach();
 
+        // Set the on click listener for the profile image view
         profileImageView.setOnClickListener(v -> {
             Intent intent = new Intent(CommonActivity.this, UserProfileActivity.class);
             startActivity(intent);
         });
 
+        // call Load the user profile function to set user profile picture
         if (firebaseUser != null) {
             loadUserProfile(firebaseUser);
         } else {
@@ -66,6 +72,8 @@ public class CommonActivity extends AppCompatActivity {
     }
 
     private void loadUserProfile(FirebaseUser firebaseUser) {
+
+        // Load the user profile from the database to set pp
         String userId = firebaseUser.getUid();
         DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
         referenceProfile.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {

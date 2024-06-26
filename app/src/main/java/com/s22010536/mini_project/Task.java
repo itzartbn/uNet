@@ -24,39 +24,16 @@ public class Task {
         return taskId;
     }
 
-    public void setTaskId(String taskId) {
-        this.taskId = taskId;
-    }
-
     public String getTaskTitle() {
         return taskTitle;
-    }
-
-    public void setTaskTitle(String taskTitle) {
-        this.taskTitle = taskTitle;
     }
 
     public String getTaskDateTime() {
         return taskDateTime;
     }
 
-    public void setTaskDateTime(String taskDateTime) {
-        this.taskDateTime = taskDateTime;
-    }
-
     public String getTaskDescription() {
         return taskDescription;
     }
 
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
 }

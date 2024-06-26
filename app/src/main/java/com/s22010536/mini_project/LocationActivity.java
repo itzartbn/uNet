@@ -42,16 +42,20 @@ public class LocationActivity extends AppCompatActivity implements OnMapReadyCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Set content view
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_location);
         Button locBtn = findViewById(R.id.trackBtn);
 
+        // Get the last known location
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
 
         locBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Get the city name of the current location
                 if (currentLocation != null) {
                     String cityName = getCityName(currentLocation.getLatitude(), currentLocation.getLongitude());
                     if (cityName != null) {
@@ -74,6 +78,7 @@ public class LocationActivity extends AppCompatActivity implements OnMapReadyCal
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, FINE_PERMISSION_CODE);
             return;
         }
+
         Task<Location> task = fusedLocationProviderClient.getLastLocation();
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override

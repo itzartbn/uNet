@@ -74,6 +74,7 @@ public class TeacherCommonActivity extends AppCompatActivity implements OnTaskAd
         }
     }
 
+
     @Override
     public void onTaskAddedToList() {
         // Switch to the Home tab

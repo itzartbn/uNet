@@ -34,6 +34,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
     private String textName, textProgram, textSid, textLocation ;
     private FirebaseAuth authProfile;
     private ProgressBar progressBar;
+    private static final int LOCATION_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,15 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         //show profile data
         showProfile(firebaseUser);
+
+        Button btnUpdateLocation = findViewById(R.id.updateProfile_map_button);
+        btnUpdateLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentLoc = new Intent(UpdateProfileActivity.this, LocationActivity.class);
+                startActivityForResult(intentLoc, LOCATION_REQUEST_CODE);
+            }
+        });
 
 
 
@@ -139,6 +149,18 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 }
             });
 
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LOCATION_REQUEST_CODE && resultCode == RESULT_OK) {
+            if (data != null) {
+                String cityName = data.getStringExtra("city_name");
+                if (cityName != null) {
+                    editTextUpdateLocation.setText(cityName);
+                }
+            }
         }
     }
 

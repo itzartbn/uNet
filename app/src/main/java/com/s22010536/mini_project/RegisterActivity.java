@@ -53,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Toast.makeText(RegisterActivity.this, "You can register now", Toast.LENGTH_LONG).show();
 
+        //view binding
         edittextFullName = findViewById(R.id.name);
         editTextemail = findViewById(R.id.email);
         programSpinner = findViewById(R.id.program_spinner);
@@ -61,11 +62,13 @@ public class RegisterActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.password);
         editTextConfirmpassword = findViewById(R.id.repassword);
 
+        // Spinner for Degree Programs
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.programs_array, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         programSpinner.setAdapter(adapter);
 
+        // Location Button
         locationbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,12 +166,14 @@ public class RegisterActivity extends AppCompatActivity {
                     UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(textFullName).build();
                     firebaseUser.updateProfile(profileChangeRequest);
 
-                    // Enter User data into Firebase Realtime Database
+                    // create user class object
                     ReadWriteUserDetails writeUserDetails = new ReadWriteUserDetails(textFullName, textProgram, textLocation, textSid);
 
                     // Extracting user reference from database for "registered Users"
                     DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
 
+
+                    // Set the user details in the database
                     referenceProfile.child(firebaseUser.getUid()).setValue(writeUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -213,11 +218,4 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public EditText getEditTextLocation() {
-        return editTextLocation;
-    }
-
-    public void setEditTextLocation(String text) {
-        editTextLocation.setText(text);
-    }
 }

@@ -55,7 +55,6 @@ public class UserProfileActivity extends AppCompatActivity {
 
 
         //back button
-
         profileBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
